@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Cônicas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <h1>Analisador de Cônicas</h1>
+            
+            <h2>Tipo de Cônica</h2>
+            <label>Selecione a cônica:</label>
+            <select id="conicType">
+                <option value="parabola">Parábola</option>
+                <option value="ellipse">Elipse</option>
+                <option value="hyperbola">Hipérbole</option>
+            </select>
+
+            <div id="params"></div>
+
+            <button onclick="calculate()">Calcular e Visualizar</button>
+
+            <div id="result" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="graph-area" id="graphArea">
+            <canvas id="canvas"></canvas>
+            <div class="coords" id="coords">x: 0, y: 0</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
