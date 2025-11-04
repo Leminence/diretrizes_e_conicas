@@ -144,8 +144,8 @@ function calculateParabola() {
 
     // y = Ax² + Bx + C (forma padrão da parábola)
     const h = -B / (2 * A); // vértice x
-    const k = C - (B * B) / (4 * A); // vértice y
-    const p = 1 / (4 * A); // parâmetro focal
+    const k = A * h * h + B * h + C; // vértice y (calculado pela equação)
+    const p = 1 / (4 * A); // parâmetro focal (distância do vértice ao foco)
 
     const focus = { x: h, y: k + p };
     const directrix = k - p;
@@ -394,6 +394,34 @@ function draw() {
         drawEllipse(centerX, centerY);
     } else if (currentConic.type === 'hyperbola') {
         drawHyperbola(centerX, centerY);
+    }
+    
+    // Draw numbers on axes
+    ctx.fillStyle = '#999';
+    ctx.font = '11px Courier New';
+    
+    // Determine interval based on zoom level
+    let interval = 1;
+    if (scale < 20) interval = 5;
+    else if (scale < 30) interval = 2;
+    else if (scale > 80) interval = 0.5;
+    
+    // X-axis numbers
+    for (let i = -20; i <= 20; i++) {
+        if (i === 0 || i % interval !== 0) continue;
+        const x = centerX + i * scale;
+        if (x >= 0 && x <= canvas.width) {
+            ctx.fillText(i.toString(), x - 5, centerY + 15);
+        }
+    }
+    
+    // Y-axis numbers
+    for (let i = -20; i <= 20; i++) {
+        if (i === 0 || i % interval !== 0) continue;
+        const y = centerY - i * scale;
+        if (y >= 0 && y <= canvas.height) {
+            ctx.fillText(i.toString(), centerX + 5, y + 4);
+        }
     }
 }
 
